@@ -14,8 +14,8 @@ public class Line {
         return binaryString;
     }
 
-    public char getStringChar() {
-        return stringChar;
+    public String getStringChar() {
+        return String.valueOf(stringChar);
     }
 
     private String convertToBinary(char inputChar) {

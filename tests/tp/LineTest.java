@@ -16,4 +16,14 @@ class LineTest {
         assertEquals("011000011", line.getBinaryString());
     }
 
+    @Test
+    public void getStringChar() {
+        Line line = new Line('w');
+        assertEquals("w", line.getStringChar());
+        line = new Line('a');
+        assertEquals("a", line.getStringChar());
+        line = new Line(' ');
+        assertEquals(" ", line.getStringChar());
+    }
+
 }
