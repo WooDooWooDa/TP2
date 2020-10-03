@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Encoder {
 
-    private ArrayList<CharGroup> charGroups = new ArrayList<>();
+    private ArrayList<Line> lineGroups = new ArrayList<>();
+    private ArrayList<Block> blockGroups = new ArrayList<>();
 
     private String stringToEncode;
-    private int eightCharCount;
+    private int blockCount;
     
     public void getStringToEncode() {
         Console.clearScreen();
@@ -15,7 +16,7 @@ public class Encoder {
         stringToEncode =  Keyboard.ReadKeyBoardString();
     }
 
-    public int getEightCharCount(String string) {
+    public int getBlockCount(String string) {
         int eightCharCount = Math.floorDiv(string.length(), 8) + 1;
         if (string.length() % 8 == 0) {
             --eightCharCount;
@@ -23,13 +24,11 @@ public class Encoder {
         return eightCharCount;
     }
 
-    public void createCharGroup() {
-        eightCharCount = getEightCharCount(stringToEncode);
-        for (int i = 1; i <= eightCharCount; i++) {
-            
+    public void createLines() {
+        char[] chars = stringToEncode.toCharArray();
+        for (int i = 1; i <= chars.length; i++) {
+            lineGroups.add(new Line(chars[i]));
         }
     }
 
-    public void encode() {
-    }
 }

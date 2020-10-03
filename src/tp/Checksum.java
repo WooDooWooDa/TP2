@@ -1,7 +1,5 @@
 package tp;
 
-import java.util.ArrayList;
-
 public class Checksum {
 
     private final int ENCODE = 1;
@@ -30,8 +28,9 @@ public class Checksum {
         if (menu.getMode() == ENCODE) {
             encoder = new Encoder();
             encoder.getStringToEncode();
-            encoder.createCharGroup();
-            encoder.encode();
+            encoder.createLines();
+            encoder.group();
+            encoder.show();
         }
         if (menu.getMode() == DECODE) {
             new Decoder();

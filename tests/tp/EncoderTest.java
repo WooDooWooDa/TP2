@@ -13,9 +13,9 @@ class EncoderTest {
 
     @Test
     void getEightCharCountTest() {
-        assertEquals(1, encoder.getEightCharCount("1234"));
-        assertEquals(1, encoder.getEightCharCount("12345678"));
-        assertEquals(2, encoder.getEightCharCount("123456789"));
+        assertEquals(1, encoder.getBlockCount("1234"));
+        assertEquals(1, encoder.getBlockCount("12345678"));
+        assertEquals(2, encoder.getBlockCount("123456789"));
     }
 
 }
