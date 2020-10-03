@@ -8,7 +8,12 @@ class LineTest {
 
     @Test
     public void getBinaryStringTest() {
-        assertEquals();
+        Line line = new Line('w');
+        assertEquals("011101110", line.getBinaryString());
+        line = new Line('Y');
+        assertEquals("010110010", line.getBinaryString());
+        line = new Line('a');
+        assertEquals("011000011", line.getBinaryString());
     }
 
 }
