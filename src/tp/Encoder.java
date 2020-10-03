@@ -18,7 +18,7 @@ public class Encoder {
     public int getEightCharCount(String string) {
         int eightCharCount = Math.floorDiv(string.length(), 8) + 1;
         if (string.length() % 8 == 0) {
-            eightCharCount--;
+            --eightCharCount;
         }
         return eightCharCount;
     }
