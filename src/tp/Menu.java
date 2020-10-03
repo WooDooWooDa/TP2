@@ -31,5 +31,9 @@ public class Menu {
         }
     }
 
-
+    public String getStringToEncode() {
+        Console.clearScreen();
+        Console.printLine("Entrez la chaine de caractère à encoder : ");
+        return Keyboard.ReadKeyBoardString();
+    }
 }

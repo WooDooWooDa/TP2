@@ -9,19 +9,21 @@ public class Encoder {
 
     private String stringToEncode;
     private int blockCount;
-    
-    public void getStringToEncode() {
-        Console.clearScreen();
-        Console.printLine("Entrez la chaine de caractère à encoder : ");
-        stringToEncode =  Keyboard.ReadKeyBoardString();
+
+    public Encoder(String string) {
+        this.stringToEncode = string;
+        countNbBlock();
     }
 
-    public int getBlockCount(String string) {
-        int eightCharCount = Math.floorDiv(string.length(), 8) + 1;
-        if (string.length() % 8 == 0) {
-            --eightCharCount;
+    public int getBlockCount() {
+        return blockCount;
+    }
+
+    private void countNbBlock() {
+        blockCount = Math.floorDiv(stringToEncode.length(), 8) + 1;
+        if (stringToEncode.length() % 8 == 0) {
+            --blockCount;
         }
-        return eightCharCount;
     }
 
     public void createLines() {
