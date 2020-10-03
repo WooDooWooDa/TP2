@@ -4,9 +4,14 @@ import java.util.Scanner;
 
 public class Keyboard {
 
-    public static int ReadKeyBoard() {
+    public static int ReadKeyBoardInt() {
         Scanner keyBoard = new Scanner(System.in);
         return keyBoard.nextInt();
+    }
+
+    public static String ReadKeyBoardString() {
+        Scanner keyBoard = new Scanner(System.in);
+        return keyBoard.nextLine();
     }
 
     public static boolean modeIsNotValid(int mode) {

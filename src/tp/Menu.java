@@ -24,7 +24,7 @@ public class Menu {
     }
 
     public void chooseMode() {
-        mode = Keyboard.ReadKeyBoard();
+        mode = Keyboard.ReadKeyBoardInt();
         if (mode == QUIT) {
             Console.quit();
             quit = true;
