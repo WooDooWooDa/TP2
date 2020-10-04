@@ -18,10 +18,21 @@ public class Line {
         return String.valueOf(stringChar);
     }
 
+    public String getCharAt(int index) {
+        return String.valueOf(binaryString.charAt(index));
+    }
+
+    public void showLine() {
+        Console.print(stringChar + " : ");
+        Console.printLine(binaryString);
+    }
+
     private String convertToBinary(char inputChar) {
         String inputCharToBinary = Integer.toBinaryString(inputChar);
-        if (inputCharToBinary.length() == 7) {
-            inputCharToBinary = "0" + inputCharToBinary;
+        if (inputCharToBinary.length() <= 7) {
+            for (int i = 0; i <= (8 - inputCharToBinary.length()); i++) {
+                inputCharToBinary = "0" + inputCharToBinary;
+            }
         }
         return inputCharToBinary;
     }
@@ -38,4 +49,5 @@ public class Line {
         }
         return binaryString + "1";
     }
+
 }

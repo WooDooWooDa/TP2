@@ -15,4 +15,14 @@ class EncoderTest {
         assertEquals(2, encoder.getBlockCount());
     }
 
+    @Test
+    void getLineInLastBlockTest() {
+        Encoder encoder = new Encoder("1234");
+        assertEquals(4, encoder.getLineInlastBlock());
+        encoder = new Encoder("123456781234");
+        assertEquals(4, encoder.getLineInlastBlock());
+        encoder = new Encoder("123456781");
+        assertEquals(1, encoder.getLineInlastBlock());
+    }
+
 }

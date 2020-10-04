@@ -9,6 +9,7 @@ public class Encoder {
 
     private final String stringToEncode;
     private int blockCount;
+    private int lineInlastBlock;
 
     public Encoder(String string) {
         this.stringToEncode = string;
@@ -21,11 +22,26 @@ public class Encoder {
         return blockCount;
     }
 
+    public int getLineInlastBlock() {
+        return lineInlastBlock;
+    }
+
+    public void show() {
+        Console.clearScreen();
+        Console.printLine("-- Chaine de caractère encodée --");
+        Console.printSpace(1);
+        for (int i = 0; i < blockCount; i++) {
+            blockGroups.get(i).showBlock();
+            Console.printSpace(1);
+        }
+    }
+
     private void countNbBlock() {
         blockCount = Math.floorDiv(stringToEncode.length(), 8) + 1;
         if (stringToEncode.length() % 8 == 0) {
             --blockCount;
         }
+        lineInlastBlock = stringToEncode.length() % 8;
     }
 
     private void createLines() {
@@ -40,16 +56,26 @@ public class Encoder {
         for (int i = 0; i < blockCount; i++) {
             Block block = new Block();
             if (lineGroups.size() <= 8) {
-                for (int j = 0; j < lineGroups.size(); j++) {
-                    block.addLine(lineGroups.get(i));
-                }
-            }
-            if (lineGroups.size() > 8) {
-                for (int j = 0; j < 8; j++) {
-                    block.addLine(lineGroups.get(i));
+                for (int j = lineAdded; j < lineGroups.size(); j++) {
+                    block.addLine(lineGroups.get(j));
                     lineAdded++;
                 }
             }
+            if ((lineGroups.size() - lineAdded) == lineInlastBlock) {
+                int linesLimit = (lineAdded) + lineInlastBlock;
+                for (int j = lineAdded; j < linesLimit; j++) {
+                    block.addLine(lineGroups.get(j));
+                    lineAdded++;
+                }
+            }
+            if (lineGroups.size() > 8 && lineAdded != lineGroups.size()) {
+                int linesLimit = lineAdded + 8;
+                for (int j = lineAdded; j < linesLimit; j++) {
+                    block.addLine(lineGroups.get(j));
+                    lineAdded++;
+                }
+            }
+            block.createParityLine();
             blockGroups.add(block);
         }
     }

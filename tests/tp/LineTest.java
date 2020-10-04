@@ -26,4 +26,12 @@ class LineTest {
         assertEquals(" ", line.getStringChar());
     }
 
+    @Test
+    public void getCharAt(int index) {
+        Line line = new Line('a');
+        assertEquals("0", line.getCharAt(0));
+        assertEquals("1", line.getCharAt(2));
+        assertEquals("1", line.getCharAt(8));
+    }
+
 }

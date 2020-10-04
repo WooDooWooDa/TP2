@@ -27,7 +27,7 @@ public class Checksum {
     private void executeMode() {
         if (menu.getMode() == ENCODE) {
             encoder = new Encoder(menu.getStringToEncode());
-            //encoder.show();
+            encoder.show();
         }
         if (menu.getMode() == DECODE) {
             new Decoder();

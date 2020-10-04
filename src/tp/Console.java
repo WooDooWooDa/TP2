@@ -44,10 +44,10 @@ public class Console {
         printSpace(1);
         printLine("Que désirez-vous faire?");
         printLine("1 : Encoder");
-        printLine("1 : Décoder");
+        printLine("2 : Décoder");
         printLine("9 : Quitter");
         printSpace(1);
-        print("Entrez votre choix ici (1 ou 2): ");
+        print("Entrez votre choix ici (1 ou 2) : ");
     }
 
     public static void printModeError() {
