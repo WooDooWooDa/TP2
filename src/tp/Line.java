@@ -18,8 +18,8 @@ public class Line {
         return String.valueOf(stringChar);
     }
 
-    public String getCharAt(int index) {
-        return String.valueOf(binaryString.charAt(index));
+    public char getCharAt(int index) {
+        return binaryString.charAt(index);
     }
 
     public void showLine() {

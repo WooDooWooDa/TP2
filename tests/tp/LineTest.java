@@ -27,11 +27,11 @@ class LineTest {
     }
 
     @Test
-    public void getCharAt(int index) {
+    public void getCharAt() {
         Line line = new Line('a');
-        assertEquals("0", line.getCharAt(0));
-        assertEquals("1", line.getCharAt(2));
-        assertEquals("1", line.getCharAt(8));
+        assertEquals('0', line.getCharAt(0));
+        assertEquals('1', line.getCharAt(2));
+        assertEquals('1', line.getCharAt(8));
     }
 
 }

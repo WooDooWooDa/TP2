@@ -47,7 +47,7 @@ public class Console {
         printLine("2 : Décoder");
         printLine("9 : Quitter");
         printSpace(1);
-        print("Entrez votre choix ici (1 ou 2) : ");
+        print("Entrez votre choix ici (1, 2 ou 9) : ");
     }
 
     public static void printModeError() {

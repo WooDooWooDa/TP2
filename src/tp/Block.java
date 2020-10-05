@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Block {
 
-    private ArrayList<Line> Lines;
-    private String parityLine;
+    private final ArrayList<Line> Lines;
+    private String parityLine = "";
 
     public Block() {
         Lines = new ArrayList<>();
@@ -16,10 +16,18 @@ public class Block {
     }
 
     public void createParityLine() {
-        for (int i = 0; i < Lines.size(); i++) {
-            for (int j = 0; j < 9; j++) {
-                Lines.get(j).getBinaryString();
+        for (int i = 0; i < 9; i++) {
+            int oneCount = 0;
+            for (int j = 0; j < Lines.size(); j++) {
+                if (Lines.get(j).getBinaryString().charAt(i) == '1') {
+                    oneCount++;
+                }
             }
+            if (oneCount % 2 == 0) {
+                parityLine += "0";
+                continue;
+            }
+            parityLine += "1";
         }
     }
 
