@@ -7,8 +7,7 @@ public class Checksum {
 
     private final Menu menu;
     private Encoder encoder;
-
-    private String stringToEncode;
+    private Decoder decoder;
 
     public Checksum() {
          menu = new Menu();
