@@ -3,11 +3,15 @@ package tp;
 public class Line {
 
     private final String binaryString;
-    private final char stringChar;
+    private char stringChar;
 
     public Line(char inputChar) {
         this.stringChar = inputChar;
         this.binaryString = addParityBit(convertToBinary(inputChar));
+    }
+
+    public Line(String binaryString) {
+        this.binaryString = binaryString;
     }
 
     public String getBinaryString() {

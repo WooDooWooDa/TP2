@@ -60,4 +60,9 @@ public class Console {
         clearScreen();
         printLine("-- Au revoir! --");
     }
+
+    public static void printLengthError() {
+        print("ERREUR! -- ", ANSI_RED);
+        printLine("Entrez une chaine de bit de 9 bits!");
+    }
 }
