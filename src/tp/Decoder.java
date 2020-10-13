@@ -7,9 +7,8 @@ public class Decoder {
     private ArrayList<Line> lineGroups = new ArrayList<>();
     private ArrayList<Block> blockGroups = new ArrayList<>();
 
-    private String bitLine = "";
-    private int blockCount;
     private int lineInLastBlock;
+    private String decodedString = "";
 
     public Decoder() {
         Console.clearScreen();
@@ -19,23 +18,57 @@ public class Decoder {
     }
 
     public void decode() {
-        for (int i = 0; i < lineGroups.size(); i++) {
-            Console.printLine(lineGroups.get(i).getBinaryString());
+        for (int i = 0; i < blockGroups.size(); i++) {
+            Block block = blockGroups.get(i);
+            block.showBlock();
+            decodedString += block.decodeBlock();
         }
     }
 
+    public void printDecodedString() {
+        Console.printLine("Chaine décodé : " + decodedString);
+    }
+
     private void readBitLines() {
-        String lastLine;
+        String bitLine = "";
         do {
-            lastLine = bitLine;
             do {
                 bitLine = Keyboard.ReadKeyBoardString();
-                if ((bitLine.length() != 9) && !bitLine.equals("")) {
+                if ((bitLine.length() != 9) && !bitLine.equals("") || containsOtherThanBit(bitLine)) {
                     Console.printLengthError();
                 }
-            } while ((bitLine.length() != 9) && !bitLine.equals(""));
+            } while ((bitLine.length() != 9) && !bitLine.equals("") || containsOtherThanBit(bitLine));
 
-            lineGroups.add(new Line(bitLine));
-        } while (!bitLine.equals(lastLine) && !bitLine.equals(""));
+            if (!bitLine.equals("")) {
+                lineGroups.add(new Line(bitLine));
+                lineInLastBlock++;
+            }
+            if (lineInLastBlock == 8) {
+                addLinesInBlocks();
+                lineInLastBlock = 0;
+            }
+        } while (!bitLine.equals(""));
+        addLinesInBlocks();
+    }
+
+    private void addLinesInBlocks() {
+        Block block = new Block();
+        for (int i = 0; i < lineInLastBlock; i++) {
+            if (i == lineInLastBlock - 1) {
+                block.addParityLine(lineGroups.get(i));
+                continue;
+            }
+            block.addLine(lineGroups.get(i));
+        }
+        blockGroups.add(block);
+    }
+
+    private boolean containsOtherThanBit(String bitLine) {
+        for (int i = 0; i < bitLine.length(); i++) {
+            if (bitLine.charAt(i) != '0' && bitLine.charAt(i) != '1') {
+                return true;
+            }
+        }
+        return false;
     }
 }

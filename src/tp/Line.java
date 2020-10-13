@@ -18,6 +18,10 @@ public class Line {
         return binaryString;
     }
 
+    public String getBinaryStringWithoutParity() {
+        return binaryString.substring(0, 8);
+    }
+
     public String getStringChar() {
         return String.valueOf(stringChar);
     }

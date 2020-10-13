@@ -20,4 +20,5 @@ public class Keyboard {
         }
         return !(mode == 1 || mode == 2 || mode == 9);
     }
+
 }
