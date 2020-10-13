@@ -18,11 +18,11 @@ class EncoderTest {
     @Test
     void getLineInLastBlockTest() {
         Encoder encoder = new Encoder("1234");
-        assertEquals(4, encoder.getLineInlastBlock());
+        assertEquals(4, encoder.getLineInLastBlock());
         encoder = new Encoder("123456781234");
-        assertEquals(4, encoder.getLineInlastBlock());
+        assertEquals(4, encoder.getLineInLastBlock());
         encoder = new Encoder("123456781");
-        assertEquals(1, encoder.getLineInlastBlock());
+        assertEquals(1, encoder.getLineInLastBlock());
     }
 
 }

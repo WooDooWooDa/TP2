@@ -9,7 +9,7 @@ public class Encoder {
 
     private final String stringToEncode;
     private int blockCount;
-    private int lineInlastBlock;
+    private int lineInLastBlock;
 
     public Encoder(String string) {
         this.stringToEncode = string;
@@ -22,11 +22,11 @@ public class Encoder {
         return blockCount;
     }
 
-    public int getLineInlastBlock() {
-        return lineInlastBlock;
+    public int getLineInLastBlock() {
+        return lineInLastBlock;
     }
 
-    public void show() {
+    public void showResult() {
         Console.clearScreen();
         Console.printLine("-- Chaine de caractère encodée --");
         Console.printSpace(1);
@@ -41,7 +41,7 @@ public class Encoder {
         if (stringToEncode.length() % 8 == 0) {
             --blockCount;
         }
-        lineInlastBlock = stringToEncode.length() % 8;
+        lineInLastBlock = stringToEncode.length() % 8;
     }
 
     private void createLines() {
@@ -61,8 +61,8 @@ public class Encoder {
                     lineAdded++;
                 }
             }
-            if ((lineGroups.size() - lineAdded) == lineInlastBlock) {
-                int linesLimit = (lineAdded) + lineInlastBlock;
+            if ((lineGroups.size() - lineAdded) == lineInLastBlock) {
+                int linesLimit = (lineAdded) + lineInLastBlock;
                 for (int j = lineAdded; j < linesLimit; j++) {
                     block.addLine(lineGroups.get(j));
                     lineAdded++;
