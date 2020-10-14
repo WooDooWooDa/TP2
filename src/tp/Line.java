@@ -2,7 +2,7 @@ package tp;
 
 public class Line {
 
-    private final String binaryString;
+    private String binaryString;
     private char stringChar;
 
     public Line(char inputChar) {
@@ -28,6 +28,16 @@ public class Line {
 
     public char getCharAt(int index) {
         return binaryString.charAt(index);
+    }
+
+    public void invertBit(int position) {
+        StringBuilder newBinaryString = new StringBuilder(binaryString);
+        if (binaryString.charAt(position) == '1') {
+            newBinaryString.setCharAt(position, '0');
+        } else {
+            newBinaryString.setCharAt(position, '1');
+        }
+        binaryString = newBinaryString.toString();
     }
 
     public void showLine() {

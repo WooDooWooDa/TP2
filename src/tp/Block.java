@@ -47,7 +47,6 @@ public class Block {
         for (int i = 0; i < Lines.size(); i ++) {
             Line line = Lines.get(i);
             if (hasToBeRecover(line)) {
-                Console.printLine("RECOVER : " + i, Console.ANSI_RED);
                 recoverBit(line);
             }
             int parseInt = Integer.parseInt(line.getBinaryStringWithoutParity(), 2);
@@ -58,7 +57,23 @@ public class Block {
     }
 
     private void recoverBit(Line line) {
-
+        for (int i = 0; i < 9; i++) {
+            int oneCount = 0;
+            for (int j = 0; j < Lines.size(); j++) {
+                if (Lines.get(j).getBinaryString().charAt(i) == '1') {
+                    oneCount++;
+                }
+            }
+            char parityBit;
+            if (oneCount % 2 == 0) {
+                parityBit = '0';
+            } else {
+                parityBit = '1';
+            }
+            if (parityBit != parityLine.charAt(i)) {
+                line.invertBit(i);
+            }
+        }
     }
 
     private boolean hasToBeRecover(Line line) {

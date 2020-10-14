@@ -17,7 +17,7 @@ class LineTest {
     }
 
     @Test
-    public void getStringChar() {
+    public void getStringCharTest() {
         Line line = new Line('w');
         assertEquals("w", line.getStringChar());
         line = new Line('a');
@@ -27,7 +27,7 @@ class LineTest {
     }
 
     @Test
-    public void getCharAt() {
+    public void getCharAtTest() {
         Line line = new Line('a');
         assertEquals('0', line.getCharAt(0));
         assertEquals('1', line.getCharAt(2));
