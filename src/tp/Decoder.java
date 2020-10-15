@@ -4,25 +4,26 @@ import java.util.ArrayList;
 
 public class Decoder {
 
-    private ArrayList<Line> lineGroups = new ArrayList<>();
-    private ArrayList<Block> blockGroups = new ArrayList<>();
+    private final ArrayList<Line> lineGroups;
+    private final ArrayList<Block> blockGroups;
 
     private int lineInLastBlock;
     private String decodedString = "";
 
     public Decoder() {
+        lineGroups = new ArrayList<>();
+        blockGroups = new ArrayList<>();
         Console.clearScreen();
         Console.printLine("Appuyer sur ENTER deux fois pour terminer");
-        Console.printSpace(1);
         readBitLines();
     }
 
     public void decode() {
-        for (int i = 0; i < blockGroups.size(); i++) {
-            Block block = blockGroups.get(i);
-            block.showBlock();
-            decodedString += block.decodeBlock();
+        StringBuilder decodedStringBuilder = new StringBuilder();
+        for (Block block : blockGroups) {
+            decodedStringBuilder.append(block.decodeBlock());
         }
+        decodedString = decodedStringBuilder.toString();
     }
 
     public void printDecodedString() {

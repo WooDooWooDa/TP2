@@ -18,8 +18,8 @@ public class Block {
     public void createParityLine() {
         for (int i = 0; i < 9; i++) {
             int oneCount = 0;
-            for (int j = 0; j < Lines.size(); j++) {
-                if (Lines.get(j).getBinaryString().charAt(i) == '1') {
+            for (Line line : Lines) {
+                if (line.getBinaryString().charAt(i) == '1') {
                     oneCount++;
                 }
             }
@@ -36,21 +36,20 @@ public class Block {
     }
 
     public void showBlock() {
-        for (int i = 0; i < Lines.size(); i++) {
-            Lines.get(i).showLine();
+        for (Line line : Lines) {
+            line.showLine();
         }
-        Console.printLine("   " + parityLine);
+        Console.printLine("    " + parityLine);
     }
 
     public String decodeBlock() {
         String decodedString = "";
-        for (int i = 0; i < Lines.size(); i ++) {
-            Line line = Lines.get(i);
+        for (Line line : Lines) {
             if (hasToBeRecover(line)) {
                 recoverBit(line);
             }
             int parseInt = Integer.parseInt(line.getBinaryStringWithoutParity(), 2);
-            char letter = (char)parseInt;
+            char letter = (char) parseInt;
             decodedString += letter;
         }
         return decodedString;
@@ -76,6 +75,7 @@ public class Block {
         }
     }
 
+    // TODO: 2020-10-14  ajouter la gestion de corruption
     private boolean hasToBeRecover(Line line) {
         String binaryString = line.getBinaryString();
         int oneCount = 0;
