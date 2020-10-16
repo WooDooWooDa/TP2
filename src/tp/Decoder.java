@@ -27,18 +27,20 @@ public class Decoder {
     }
 
     public void printDecodedString() {
-        Console.printLine("Chaine décodé : " + decodedString);
+        Console.clearScreen();
+        Console.printLine("-- Chaine de caractère décodé --");
+        Console.printLine(decodedString);
     }
 
     private void readBitLines() {
-        String bitLine = "";
+        String bitLine;
         do {
             do {
                 bitLine = Keyboard.ReadKeyBoardString();
-                if ((bitLine.length() != 9) && !bitLine.equals("") || containsOtherThanBit(bitLine)) {
+                if (containsOtherThanBit(bitLine)) {
                     Console.printLengthError();
                 }
-            } while ((bitLine.length() != 9) && !bitLine.equals("") || containsOtherThanBit(bitLine));
+            } while (containsOtherThanBit(bitLine));
 
             if (!bitLine.equals("")) {
                 lineGroups.add(new Line(bitLine));
@@ -70,6 +72,6 @@ public class Decoder {
                 return true;
             }
         }
-        return false;
+        return (bitLine.length() != 9) && !bitLine.equals("");
     }
 }

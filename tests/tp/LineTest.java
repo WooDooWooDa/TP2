@@ -29,9 +29,7 @@ class LineTest {
     @Test
     public void getCharAtTest() {
         Line line = new Line('a');
-        assertEquals('0', line.getCharAt(0));
-        assertEquals('1', line.getCharAt(2));
-        assertEquals('1', line.getCharAt(8));
+        assertEquals('1', line.getParityBit());
     }
 
 }

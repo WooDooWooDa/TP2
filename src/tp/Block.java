@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Block {
 
+    private final String CORRUPTED = Console.ANSI_RED + "Corruption dans la séquence" + Console.ANSI_RESET;
+
     private final ArrayList<Line> Lines;
     private String parityLine = "";
 
@@ -45,8 +47,10 @@ public class Block {
     public String decodeBlock() {
         String decodedString = "";
         for (Line line : Lines) {
-            if (hasToBeRecover(line)) {
-                recoverBit(line);
+            int corruptionError = recoverLine(line);
+            if (corruptionError == 1) {
+                decodedString = CORRUPTED;
+                break;
             }
             int parseInt = Integer.parseInt(line.getBinaryStringWithoutParity(), 2);
             char letter = (char) parseInt;
@@ -55,42 +59,36 @@ public class Block {
         return decodedString;
     }
 
-    private void recoverBit(Line line) {
+    private int recoverLine(Line line) {
+        int bitToInvert = 0;
+        int bitPosition = 0;
         for (int i = 0; i < 9; i++) {
-            int oneCount = 0;
-            for (int j = 0; j < Lines.size(); j++) {
-                if (Lines.get(j).getBinaryString().charAt(i) == '1') {
-                    oneCount++;
+            int oneXCount = line.getOneCountInLine();
+            int oneYCount = 0;
+            for (Line row : Lines) {
+                if (row.getBinaryString().charAt(i) == '1') {
+                    oneYCount++;
                 }
             }
-            char parityBit;
-            if (oneCount % 2 == 0) {
-                parityBit = '0';
-            } else {
-                parityBit = '1';
-            }
-            if (parityBit != parityLine.charAt(i)) {
-                line.invertBit(i);
+            if (getParityBitForOneCount(oneXCount) != line.getParityBit() && getParityBitForOneCount(oneYCount) != parityLine.charAt(i)) {
+                bitToInvert++;
+                bitPosition = i;
             }
         }
+        if (bitToInvert > 1) {
+            return 1;
+        }
+        if (bitToInvert == 1) {
+            line.invertBit(bitPosition);
+        }
+        return 0;
     }
 
-    // TODO: 2020-10-14  ajouter la gestion de corruption
-    private boolean hasToBeRecover(Line line) {
-        String binaryString = line.getBinaryString();
-        int oneCount = 0;
-        for (int i = 0; i < binaryString.length() - 1; i++) {
-            if (binaryString.charAt(i) == '1') {
-                ++oneCount;
-            }
-        }
-        char parityBit;
+    private char getParityBitForOneCount(int oneCount) {
         if (oneCount % 2 == 0) {
-            parityBit = '0';
-        } else {
-            parityBit = '1';
+            return '0';
         }
-        return parityBit != binaryString.charAt(8);
+        return '1';
     }
 
 }

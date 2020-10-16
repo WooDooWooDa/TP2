@@ -26,8 +26,18 @@ public class Line {
         return String.valueOf(stringChar);
     }
 
-    public char getCharAt(int index) {
-        return binaryString.charAt(index);
+    public char getParityBit() {
+        return binaryString.charAt(8);
+    }
+
+    public int getOneCountInLine() {
+        int oneCount = 0;
+        for (int j = 0; j < binaryString.length() - 1; j++) {
+            if (binaryString.charAt(j) == '1') {
+                ++oneCount;
+            }
+        }
+        return oneCount;
     }
 
     public void invertBit(int position) {
