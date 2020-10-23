@@ -22,6 +22,10 @@ public class Line {
         return String.valueOf(stringChar);
     }
 
+    public String getBinaryStringWithoutParity() {
+        return binaryString.substring(0, 8);
+    }
+
     public char getParityBit() {
         return binaryString.charAt(8);
     }
