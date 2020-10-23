@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Decoder {
 
+    private final String CORRUPTED = Console.ANSI_RED + "Corruption dans la séquence" + Console.ANSI_RESET;
+
     private final ArrayList<Line> lineGroups;
     private final ArrayList<Block> blockGroups;
 
@@ -29,6 +31,10 @@ public class Decoder {
     public void printDecodedString() {
         Console.clearScreen();
         Console.printLine("-- Chaine de caractère décodé --");
+        if (decodedString == CORRUPTED) {
+            Console.printLine(CORRUPTED);
+            return;
+        }
         Console.printLine(decodedString);
     }
 
@@ -47,8 +53,12 @@ public class Decoder {
                 lineInLastBlock++;
             }
             if (lineInLastBlock == 8) {
+                Console.printLine("Entrez votre ligne de parité maintenant");
+            }
+            if (lineInLastBlock == 9) {
                 addLinesInBlocks();
                 lineInLastBlock = 0;
+                lineGroups.clear();
             }
         } while (!bitLine.equals(""));
         addLinesInBlocks();
