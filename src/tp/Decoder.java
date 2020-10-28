@@ -1,7 +1,6 @@
 package tp;
 
 import java.util.ArrayList;
-import java.util.function.ToDoubleBiFunction;
 
 public class Decoder {
 
@@ -17,6 +16,10 @@ public class Decoder {
     public Decoder() {
         lineGroups = new ArrayList<>();
         blockGroups = new ArrayList<>();
+    }
+
+    public String getDecodedString() {
+        return decodedString;
     }
 
     public void decode() {

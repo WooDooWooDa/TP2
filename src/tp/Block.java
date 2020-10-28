@@ -17,6 +17,10 @@ public class Block {
         Lines.add(line);
     }
 
+    public String getParityLine() {
+        return parityLine;
+    }
+
     public void createParityLine() {
         for (int i = 0; i < 9; i++) {
             int oneCount = 0;
