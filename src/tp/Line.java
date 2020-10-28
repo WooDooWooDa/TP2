@@ -51,8 +51,7 @@ public class Line {
     }
 
     public void showLine() {
-        Console.print(stringChar + " : ");
-        Console.printLine(binaryString);
+        Console.print(binaryString);
     }
 
     private String convertToBinary(char inputChar) {

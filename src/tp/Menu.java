@@ -36,4 +36,26 @@ public class Menu {
         Console.printLine("Entrez la chaine de caractère à encoder : ");
         return Keyboard.ReadKeyBoardString();
     }
+
+    public String getBitsLine() {
+        String bitsLine;
+        Console.clearScreen();
+        Console.printLine("Entrez la chaine binaire à décoder : ");
+        do {
+            bitsLine = Keyboard.ReadKeyBoardString();
+            if (containsOtherThanBit(bitsLine)) {
+                Console.printLengthError();
+            }
+        } while (containsOtherThanBit(bitsLine));
+        return bitsLine;
+    }
+
+    private boolean containsOtherThanBit(String bitLine) {
+        for (int i = 0; i < bitLine.length(); i++) {
+            if (bitLine.charAt(i) != '0' && bitLine.charAt(i) != '1') {
+                return true;
+            }
+        }
+        return (bitLine.length() % 9 != 0);
+    }
 }

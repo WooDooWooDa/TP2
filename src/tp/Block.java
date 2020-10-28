@@ -41,7 +41,7 @@ public class Block {
         for (Line line : Lines) {
             line.showLine();
         }
-        Console.printLine("    " + parityLine);
+        Console.print(parityLine);
     }
 
     public String decodeBlock() {

@@ -63,6 +63,6 @@ public class Console {
 
     public static void printLengthError() {
         print("ERREUR! -- ", ANSI_RED);
-        printLine("Entrez une chaine de bit de 9 bits (0 ou 1)!");
+        printLine("Entrez une chaine de bit, 9 et plus");
     }
 }

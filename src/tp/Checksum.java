@@ -30,6 +30,7 @@ public class Checksum {
         }
         if (menu.getMode() == DECODE) {
             decoder = new Decoder();
+            decoder.setBitsLine(menu.getBitsLine());
             decoder.decode();
             decoder.printDecodedString();
         }
