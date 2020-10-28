@@ -1,6 +1,7 @@
 package tp;
 
 import java.util.ArrayList;
+import java.util.function.ToDoubleBiFunction;
 
 public class Decoder {
 
@@ -9,6 +10,7 @@ public class Decoder {
     private final ArrayList<Line> lineGroups;
     private final ArrayList<Block> blockGroups;
 
+    private String bitsLine;
     private int lineInLastBlock;
     private String decodedString = "";
 
@@ -27,6 +29,10 @@ public class Decoder {
         }
         decodedString = decodedStringBuilder.toString();
     }
+    
+    public void setBitsLine(String bitsLine) {
+        this.bitsLine = bitsLine;
+    }
 
     public void printDecodedString() {
         Console.clearScreen();
@@ -39,17 +45,16 @@ public class Decoder {
     }
 
     private void readBitLines() {
-        String bitLine;
         do {
             do {
-                bitLine = Keyboard.ReadKeyBoardString();
-                if (containsOtherThanBit(bitLine)) {
+                bitsLine = Keyboard.ReadKeyBoardString();
+                if (containsOtherThanBit(bitsLine)) {
                     Console.printLengthError();
                 }
-            } while (containsOtherThanBit(bitLine));
+            } while (containsOtherThanBit(bitsLine));
 
-            if (!bitLine.equals("")) {
-                lineGroups.add(new Line(bitLine));
+            if (!bitsLine.equals("")) {
+                lineGroups.add(new Line(bitsLine));
                 lineInLastBlock++;
             }
             if (lineInLastBlock == 8) {
@@ -60,8 +65,12 @@ public class Decoder {
                 lineInLastBlock = 0;
                 lineGroups.clear();
             }
-        } while (!bitLine.equals(""));
+        } while (!bitsLine.equals(""));
         addLinesInBlocks();
+    }
+    
+    private void groupBitsLine() {
+        // TODO: 2020-10-28 group bitsline from bitsline 
     }
 
     private void addLinesInBlocks() {
@@ -82,6 +91,6 @@ public class Decoder {
                 return true;
             }
         }
-        return (bitLine.length() != 9) && !bitLine.equals("");
+        return (bitLine.length() % 8 == 0) && !bitLine.equals("");
     }
 }
